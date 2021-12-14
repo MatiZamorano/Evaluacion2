@@ -81,7 +81,7 @@ def inicioSesion():
     Label (pantalla4).pack()
 
     Label(pantalla4, text="Contraseña").pack()
-    contrasenaUsuarioEntry= Entry (pantalla4, textvariable= contrasenaUsuario_verify)
+    contrasenaUsuarioEntry= Entry (pantalla4, show="*",  textvariable= contrasenaUsuario_verify)
     contrasenaUsuarioEntry.pack()
     Label (pantalla4).pack()
 
@@ -109,22 +109,35 @@ def registrar():
     Label (pantalla5).pack()
 
     Label(pantalla5, text="Contraseña").pack()
-    contrasena_UsuarioEntry= Entry (pantalla5)
+    contrasena_UsuarioEntry= Entry (pantalla5, show="*")
     contrasena_UsuarioEntry.pack()
     Label (pantalla5).pack()
 
-    Button(pantalla5, text= "Registar").pack()
+    Button(pantalla5, text= "Registar", command=insertaDatos).pack()
 
 
+def insertaDatos():
+    bd= pymysql.connect(
+        host="localhost",
+        user= "root",
+        passwd="",
+        db="bd2"
+        )
 
+    fcursor=bd.cursor()
 
+    sql="INSERT INTO Login1 (usuario, contrasena) VaLUES ('(0)', '(1)')".format(nombre_UsuarioEntry.get(), contrasena_UsuarioEntry.get() )
 
+    try:
+        fcursor.execute(sql)
+        bd.commit()
+        messagebox.showinfo (message="Registro Exitoso", title="Aviso")
 
+    except:
+        bd.rollback()
+        messagebox.showinfo (message="No Registrado", title="Aviso")
 
-
-    
-
-
+    bd.close()
 
 
 
