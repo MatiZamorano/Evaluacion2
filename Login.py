@@ -66,17 +66,17 @@ def inicioSesion():
     Label(pantalla4, text= "Por favor ingrese su usuario y contraseña", bg="navy", fg="white", width="280", height="3", font=("Calibri", 15)).pack()
     Label(pantalla4, text="").pack()
 
-    global idUsuario_verify
+    global nombreUsuario_verify
     global contrasenaUsuario_verify
 
-    idUsuario_verify=StringVar ()
-    contrasenaUsuario_verify=StringVar ()
+    nombreUsuario_verify=StringVar()
+    contrasenaUsuario_verify=StringVar()
 
     global nombreUsuarioEntry
     global contrasenaUsuarioEntry
 
     Label(pantalla4, text="Usuario").pack()
-    nombreUsuarioEntry= Entry (pantalla4, textvariable= idUsuario_verify)
+    nombreUsuarioEntry= Entry (pantalla4, textvariable= nombreUsuario_verify)
     nombreUsuarioEntry.pack()
     Label (pantalla4).pack()
 
@@ -85,7 +85,7 @@ def inicioSesion():
     contrasenaUsuarioEntry.pack()
     Label (pantalla4).pack()
 
-    Button (pantalla4, text="Iniciar Sesion").pack()
+    Button (pantalla4, text="Iniciar Sesion", command=validacioDatos).pack()
 
 def registrar():
     global pantalla5
@@ -126,7 +126,7 @@ def insertaDatos():
 
     fcursor=bd.cursor()
 
-    sql="INSERT INTO Login1 (usuario, contrasena) VaLUES ('(0)', '(1)')".format(nombre_UsuarioEntry.get(), contrasena_UsuarioEntry.get() )
+    sql="INSERT INTO Login1 (usuario, contrasena) VALUES ('(0)', '(1)')".format(nombre_UsuarioEntry.get(), contrasena_UsuarioEntry.get() )
 
     try:
         fcursor.execute(sql)
@@ -139,9 +139,24 @@ def insertaDatos():
 
     bd.close()
 
+def validacioDatos():
+    bd= pymysql.connect(
+    host="localhost",
+    user= "root",
+    passwd="",
+    db="bd2"
+    )
+
+    fcursor=bd.cursor()
+    fcursor.execute("SELECT contrasena FROM login WHERE usuario='"+nombreUsuario_verify.get()+"' and contrasena '"+contrasenaUsuario_verify.get()+"'")
+    if fcursor.fetchall():
+        messagebox.showinfo("Inicio sesion correcta", message= "Usuarrio y contraseña validos")
+
+    else:
+         messagebox.showinfo("Inicio sesion incorrecta", message= "Usuarrio y contraseña  no validos")
 
 
-
+    bd.close()
 
 
 
