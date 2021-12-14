@@ -20,7 +20,7 @@ def menuPantalla():
 
     Button(text="Alumno", height="2", width="25", command=alumno).pack()
     Label(text="").pack()
-    Button(text="Docente", height="2", width="25").pack()
+    Button(text="Docente", height="2", width="25", command=docente).pack()
     Label(text="").pack()
     Button(text="Administrativo", height="2", width="25").pack()
 
@@ -38,8 +38,21 @@ def alumno():
 
     Button(pantalla1, text="Inicar Sesión", height="2", width="25", command= inicioSesion).pack()
     Label(pantalla1, text="").pack()
-    Button(pantalla1, text="Registrarse", height="2", width="25").pack()
+    Button(pantalla1, text="Registrarse", height="2", width="25", command= registrar).pack()
     Label(pantalla1, text="").pack()
+
+def docente():
+    global pantalla2
+    pantalla2= Toplevel(pantalla)
+    pantalla2.geometry("500x300")
+    pantalla2.title("Bienvenido")
+    pantalla2.iconbitmap("logo.ico")
+
+    Label(pantalla2, text= "Bienvenido", bg="navy", fg="white", width="280", height="3", font=("Calibri", 15)).pack()
+    Label(pantalla2, text="").pack()
+
+    Button(pantalla2, text="Inicar Sesión", height="2", width="25", command= inicioSesion).pack()
+    Label(pantalla2, text="").pack()
 
 
 def inicioSesion():
@@ -73,6 +86,50 @@ def inicioSesion():
     Label (pantalla4).pack()
 
     Button (pantalla4, text="Iniciar Sesion").pack()
+
+def registrar():
+    global pantalla5
+    pantalla5= Toplevel(pantalla1)
+    pantalla5.geometry("500x300")
+    pantalla5.title("Registro")
+    pantalla5.iconbitmap("logo.ico")
+
+    global nombre_UsuarioEntry
+    global contrasena_UsuarioEntry
+
+    nombre_UsuarioEntry= StringVar()
+    contrasena_UsuarioEntry= StringVar()
+
+    Label(pantalla5, text="Por favor ingrese usario y contraseña", bg="navy", fg="white", width="280", height="3", font=("Calibri", 15)).pack ()
+    Label (pantalla5).pack()
+
+    Label(pantalla5, text="Usuario").pack()
+    nombre_UsuarioEntry= Entry (pantalla5)
+    nombre_UsuarioEntry.pack()
+    Label (pantalla5).pack()
+
+    Label(pantalla5, text="Contraseña").pack()
+    contrasena_UsuarioEntry= Entry (pantalla5)
+    contrasena_UsuarioEntry.pack()
+    Label (pantalla5).pack()
+
+    Button(pantalla5, text= "Registar").pack()
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
 
 
 menuPantalla()
