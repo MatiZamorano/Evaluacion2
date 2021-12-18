@@ -1,16 +1,18 @@
 import datetime
 
 class Usuario:
-    nombre= ''
-    apellido= ''
-    rut= ''
-    direccion=''
-    telefono=0
-    correo=''
-    usuario=''
-    constraseña=''
-    tipoUsuario=''
-    idUsuario=''
+    def __init__(self, nombre, apellido, rut, direccion, telefono, correo, usuario, contraseña, tipoUsuario, idUsuario):
+        pass
+        self.nombre= ''
+        self.apellido= ''
+        self.rut= ''
+        self.direccion=''
+        self.telefono=0
+        self.correo=''
+        self.usuario=''
+        self.constraseña=''
+        self.tipoUsuario=''
+        self.idUsuario=''
 
     def validarAcceso(self):
         pass
@@ -21,8 +23,10 @@ class Usuario:
 
 
 class Alumno (Usuario):
-    idAlumno=''
-    registroAlumnos=[]
+    def __init__(self, idAlumno, registroAlumnos):
+
+        self.idAlumno=''
+        self.registroAlumnos=[]
 
     def iniciarSesion(self, usuario, contrasena):
         pass
@@ -30,8 +34,10 @@ class Alumno (Usuario):
         pass
 
 class JefeCarrera (Usuario):
-    idJefeCarrera=''
-    lisaModulos=[]
+    def __init__(self, idJefecarrera, listaModulos):
+
+        self.idJefeCarrera=''
+        self.litaModulos=[]
 
     def asignarModulo(modulo, docente):
         pass
