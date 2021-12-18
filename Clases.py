@@ -24,6 +24,8 @@ class Alumno (Usuario):
     idAlumno=''
     registroAlumnos=[]
 
+    def iniciarSesion(self, usuario, contrasena):
+        pass
     def verNotas(self, notas, modulo):
         pass
 
