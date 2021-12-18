@@ -1,7 +1,16 @@
 import tkinter
 from tkinter import*
 from tkinter import messagebox
-import pymysql
+import cx_Oracle
+lib_dir= 'C:\Users\matia\OneDrive\Escritorio\Proyecto Inacap'
+try:
+    cx_Oracle.init_oracle_client()
+    conexion=cx_Oracle.connect(user="admin", password="Proyectoinacap2021.", dsn="BDproyecto")
+
+        
+except Exception as ex:
+    print(ex)
+
 
 def menuPantalla():
     global pantalla
@@ -117,12 +126,7 @@ def registrar():
 
 
 def insertaDatos():
-    bd= pymysql.connect(
-        host="localhost",
-        user= "root",
-        passwd="",
-        db="bd2"
-        )
+
 
     fcursor=bd.cursor()
 
